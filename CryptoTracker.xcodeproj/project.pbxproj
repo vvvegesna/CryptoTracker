@@ -28,6 +28,7 @@
 		832776C128EA982900F746E6 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832776C028EA982900F746E6 /* CoinImageView.swift */; };
 		832776C328EA9C2000F746E6 /* CoinImageDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832776C228EA9C2000F746E6 /* CoinImageDataService.swift */; };
 		832776C528EA9E7500F746E6 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832776C428EA9E7500F746E6 /* CoinImageViewModel.swift */; };
+		8327777428F27B1300F746E6 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327777328F27B1300F746E6 /* LocalFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		832776C028EA982900F746E6 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		832776C228EA9C2000F746E6 /* CoinImageDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageDataService.swift; sourceTree = "<group>"; };
 		832776C428EA9E7500F746E6 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
+		8327777328F27B1300F746E6 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				832776BD28EA890200F746E6 /* NetworkingManager.swift */,
+				8327777328F27B1300F746E6 /* LocalFileManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				832776AF28E9414500F746E6 /* String.swift in Sources */,
 				832776BE28EA890200F746E6 /* NetworkingManager.swift in Sources */,
 				832776C328EA9C2000F746E6 /* CoinImageDataService.swift in Sources */,
+				8327777428F27B1300F746E6 /* LocalFileManager.swift in Sources */,
 				832776B228E9414500F746E6 /* Color.swift in Sources */,
 				832776A528E9413900F746E6 /* CoinDetailModel.swift in Sources */,
 				832776AD28E9414500F746E6 /* Date.swift in Sources */,

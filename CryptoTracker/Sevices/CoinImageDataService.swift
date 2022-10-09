@@ -13,14 +13,31 @@ class CoinImageDataService {
     
     @Published var image: UIImage?
     
-    var coinImageCancellable: AnyCancellable?
+    private var coinImageCancellable: AnyCancellable?
+    private let fileManager = LocalFileManager.insatnce
+    private let coin: CoinModel
+    private let folderName = "coin_images"
+    private let imageName: String
     
     init(for coin: CoinModel) {
-        fetchImage(for: coin)
+        self.coin = coin
+        self.imageName = coin.id
+        fetchFromCache(for: coin)
     }
     
-    private func fetchImage(for coin: CoinModel) {
-        guard let url = URL(string: coin.image) else {
+    func fetchFromCache(for coin: CoinModel) {
+        
+        if let image = fileManager.getSavedCoinImage(imageName: self.imageName, folderName: folderName) {
+            self.image = image
+            //print("Retrived From the cache \(self.imageName)")
+        } else {
+            downloadImage()
+            //print("Image downloaded successfully! \(self.imageName)")
+        }
+    }
+    
+    private func downloadImage() {
+        guard let url = URL(string: self.coin.image) else {
             return
         }
         coinImageCancellable = NetworkingManager.downloadDataFrom(url: url)
@@ -30,13 +47,16 @@ class CoinImageDataService {
             .sink { (completion) in
                 switch completion {
                 case .finished:
+                    print("Finished successfully!")
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-            } receiveValue: { [weak self] returnedImage in
-                self?.image = returnedImage
-                self?.coinImageCancellable?.cancel()
+            } receiveValue: { [weak self] (returnedImage) in
+                guard let self = self, let uiImage = returnedImage else { return }
+                self.image = uiImage
+                self.coinImageCancellable?.cancel()
+                self.fileManager.saveCoinImage(image: uiImage, folderName: self.folderName, imageName: self.imageName)
             }
 
     }
