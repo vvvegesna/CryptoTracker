@@ -15,14 +15,13 @@ struct HomeView: View {
         ZStack{
             Color.theme.background
                 .ignoresSafeArea()
-            List {
-                ForEach(viewModel.allCoins) { coin in
-                    HStack {
-                        CoinImageView(coin)
-                            .frame(width: 30, height: 30)
-                        Text(coin.symbol.uppercased())
+            VStack(spacing: 0) {
+                SearchBarView(searchText: $viewModel.searchText)
+                List {
+                    ForEach(viewModel.allCoins) { coin in
+                       oldNavigationLink(for: coin)
                     }
-                }
+                }.listStyle(PlainListStyle())
             }
         }
     }
@@ -35,5 +34,20 @@ struct HomeView_Previews: PreviewProvider {
                 .navigationBarHidden(true)
         }
         .environmentObject(dev.homeVM)
+    }
+}
+
+extension HomeView {
+    
+    func oldNavigationLink(for coin: CoinModel) -> some View {
+        NavigationLink {
+            CoinDetailView(coin)
+        } label: {
+            HStack {
+                CoinImageView(coin)
+                    .frame(width: 30, height: 30)
+                Text(coin.symbol.uppercased())
+            }
+        }
     }
 }

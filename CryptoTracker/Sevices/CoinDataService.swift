@@ -10,7 +10,7 @@ import Combine
 
 class CoinDataService {
     
-    @Published var AllCoins: [CoinModel] = []
+    @Published var allCoins: [CoinModel] = []
     
     var coinCancellable: AnyCancellable?
     
@@ -32,7 +32,7 @@ class CoinDataService {
                     print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] returnedCoins in
-                self?.AllCoins = returnedCoins
+                self?.allCoins = returnedCoins
                 self?.coinCancellable?.cancel()
             }
     }
